@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NBA Higher or Lower</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>NBA Higher or Lower</h1>
+    <div id="game">
+      <div id="player1"></div>
+      <div id="player2"></div>
+    </div>
+    <script>
+      async function fetchPlayers() {
+        const response = await fetch("http://localhost:5000/players/random");
+        const players = await response.json();
+
+        const player1 = players[0];
+        const player2 = players[1];
+
+        document.getElementById("player1").innerHTML = `
+          <h2>${player1.player_name}</h2>
+          <img src="${player1.image_url}" alt="${player1.player_name}" width="200">
+          <button onclick="checkWinner(${player1.ppg}, ${player2.ppg}, 1)">Select</button>
+        `;
+
+        document.getElementById("player2").innerHTML = `
+          <h2>${player2.player_name}</h2>
+          <img src="${player2.image_url}" alt="${player2.player_name}" width="200">
+          <button onclick="checkWinner(${player1.ppg}, ${player2.ppg}, 2)">Select</button>
+        `;
+        document.getElementById("player1").classList.remove("correct", "wrong");
+        document.getElementById("player2").classList.remove("correct", "wrong");
+      }
+
+      function checkWinner(ppg1, ppg2, selected) {
+        const player1Div = document.getElementById("player1");
+        const player2Div = document.getElementById("player2");
+
+        if (
+          (selected === 1 && ppg1 > ppg2) ||
+          (selected === 2 && ppg2 > ppg1)
+        ) {
+          if (selected === 1) {
+            player1Div.classList.add("correct");
+          } else {
+            player2Div.classList.add("correct");
+          }
+        } else {
+          if (selected === 1) {
+            player1Div.classList.add("wrong");
+          } else {
+            player2Div.classList.add("wrong");
+          }
+        }
+        setTimeout(fetchPlayers, 800);
+      }
+
+      fetchPlayers();
+    </script>
+  </body>
+</html>
