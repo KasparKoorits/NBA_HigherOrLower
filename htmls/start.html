@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Select Game</title>
+    <link rel="stylesheet" href="../style/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div><h2 class="header_text">NBA Higher or Lower</h2></div>
+      <button id="logout-button">Logout</button>
+      <script>
+        document.getElementById("logout-button").onclick = () => {
+          localStorage.removeItem("token");
+          window.location.href = "login.html";
+        };
+
+        if (!localStorage.getItem("token")) {
+          window.location.href = "login.html";
+        }
+
+        function checkToken() {
+          const token = localStorage.getItem("token");
+          if (!token) {
+            window.location.href = "login.html";
+            return;
+          }
+
+          const payload = JSON.parse(atob(token.split(".")[1]));
+          const expiry = payload.exp * 1000;
+          if (Date.now() >= expiry) {
+            localStorage.removeItem("token");
+            window.location.href = "login.html";
+          }
+        }
+
+        checkToken();
+        setInterval(checkToken, 60000); // Check token every minute
+      </script>
+    </header>
+    <h1>Select a Game</h1>
+    <div id="game-selection">
+      <button onclick="window.location.href='index.html'">
+        NBA Higher or Lower (Career PPG)
+      </button>
+      <button onclick="window.location.href='2k.html'">
+        NBA Higher or Lower (2K Ratings)
+      </button>
+      <button onclick="window.location.href='fgpercentage.html'">
+        NBA Higher or Lower (Career FG%)
+      </button>
+    </div>
+  </body>
+</html>

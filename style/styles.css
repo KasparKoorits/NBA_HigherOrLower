@@ -90,3 +90,52 @@ button:hover {
 #game-selection button:hover {
   background-color: #0056b3;
 }
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px;
+  background-color: #007bff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+header button {
+  background-color: #ff4b5c;
+  color: white;
+  border: none;
+  padding: 5px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-right: 5rem;
+}
+
+header button:hover {
+  background-color: #ff1f3a;
+}
+
+main {
+  margin-top: 80px;
+}
+
+.header_text {
+  color: white;
+  font-size: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+main {
+  margin-top: 80px;
+}
+
+.player-image {
+  max-width: auto;
+  height: auto;
+  max-height: 23rem;
+  padding: 10px;
+}

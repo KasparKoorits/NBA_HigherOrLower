@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="../style/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h2 class="header_text">NBA Higher or Lower</h2>
+    </header>
+    <h1>Login</h1>
+    <form id="login-form">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required />
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="register.html">Register here</a></p>
+    <script>
+      document.getElementById("login-form").onsubmit = async (e) => {
+        e.preventDefault();
+        const response = await fetch("http://localhost:5000/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: e.target.username.value,
+            password: e.target.password.value,
+          }),
+        });
+        if (response.ok) {
+          const data = await response.json();
+          localStorage.setItem("token", data.token);
+          alert("Login successful!");
+          window.location.href = "start.html";
+        } else {
+          alert("Login failed!");
+        }
+      };
+    </script>
+  </body>
+</html>

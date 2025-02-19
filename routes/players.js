@@ -1,11 +1,11 @@
 const express = require("express");
+const {
+  getAllPlayers,
+  getRandomPlayers,
+} = require("../controllers/playerController");
+
 const router = express.Router();
-const playerController = require("../controllers/playerController");
-
-// Get all players
-router.get("/", playerController.getAllPlayers);
-
-// Get two random players
-router.get("/random", playerController.getRandomPlayers);
+router.get("/", getAllPlayers);
+router.get("/random", getRandomPlayers);
 
 module.exports = router;

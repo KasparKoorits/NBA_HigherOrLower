@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="../style/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h2 class="header_text">NBA Higher or Lower</h2>
+    </header>
+    <h1>Register</h1>
+    <form id="register-form">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required />
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
+      <button type="submit">Register</button>
+    </form>
+    <p>Already have an account? <a href="login.html">Login here</a></p>
+    <script>
+      document.getElementById("register-form").onsubmit = async (e) => {
+        e.preventDefault();
+        const response = await fetch("http://localhost:5000/auth/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: e.target.username.value,
+            password: e.target.password.value,
+          }),
+        });
+        if (response.ok) {
+          alert("Registration successful!");
+          window.location.href = "login.html";
+        } else {
+          alert("Registration failed!");
+        }
+      };
+    </script>
+  </body>
+</html>
