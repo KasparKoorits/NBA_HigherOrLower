@@ -9,7 +9,7 @@ exports.getAllPlayers = (req, res) => {
 
 exports.getRandomPlayers = (req, res) => {
   db.query(
-    "SELECT player_name, image_url, ppg, rating FROM players ORDER BY RAND() LIMIT 2",
+    "SELECT player_name, image_url, ppg, rating, fg_percentage FROM players ORDER BY RAND() LIMIT 2",
     (err, results) => {
       if (err) return res.status(500).json({ error: err.message });
       res.json(results);
