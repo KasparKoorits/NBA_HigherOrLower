@@ -8,7 +8,7 @@
   </head>
   <body>
     <header>
-      <div><h2 class="header_text">NBA Higher or Lower</h2></div>
+      <div class="header_text">NBA Higher or Lower</div>
       <button id="logout-button">Logout</button>
       <script>
         document.getElementById("logout-button").onclick = () => {
@@ -80,15 +80,13 @@
         // Update player1 details
         document.getElementById("player1").innerHTML = `
         <h2>${player1.player_name}</h2>
-        <img src="${player1.image_url}" alt="${player1.player_name}" class="player-image">
-        <button onclick="checkWinner(${player1.ppg}, ${player2.ppg}, 1)">Select</button>
+        <img src="${player1.image_url}" alt="${player1.player_name}" class="player-image" onclick="checkWinner(${player1.ppg}, ${player2.ppg}, 1)">
       `;
 
         // Update player2 details
         document.getElementById("player2").innerHTML = `
         <h2>${player2.player_name}</h2>
-        <img src="${player2.image_url}" alt="${player2.player_name}" class="player-image">
-        <button onclick="checkWinner(${player1.ppg}, ${player2.ppg}, 2)">Select</button>
+        <img src="${player2.image_url}" alt="${player2.player_name}" class="player-image" onclick="checkWinner(${player1.ppg}, ${player2.ppg}, 2)">
       `;
 
         // Remove previous result classes

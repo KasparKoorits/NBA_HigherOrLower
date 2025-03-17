@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NBA Higher or Lower (Career FG%)</title>
+    <title>NBA Higher or Lower (Career 3PT%)</title>
     <link rel="stylesheet" href="../style/styles.css" />
   </head>
   <body>
@@ -43,8 +43,8 @@
     <button onclick="window.location.href='start.html'">Back to Start</button>
 
     <!-- Page Title -->
-    <h1>NBA Higher or Lower (Career FG%)</h1>
-    <h2>Select Who Has The Higher Career FG%</h2>
+    <h1>NBA Higher or Lower (Career 3PT%)</h1>
+    <h2>Select Who Has The Higher Career 3PT%</h2>
 
     <!-- Scoreboard -->
     <div id="scoreboard">
@@ -65,7 +65,7 @@
       }
 
       let currentScore = 0;
-      let highScore = localStorage.getItem("highScoreFG") || 0;
+      let highScore = localStorage.getItem("highScore3PT") || 0;
       document.getElementById("high-score").textContent = highScore;
 
       // Fetch two random players from the server
@@ -79,13 +79,13 @@
         // Update player1 details
         document.getElementById("player1").innerHTML = `
         <h2>${player1.player_name}</h2>
-        <img src="${player1.image_url}" alt="${player1.player_name}" class="player-image" onclick="checkWinner(${player1.fg_percentage}, ${player2.fg_percentage}, 1)">
+        <img src="${player1.image_url}" alt="${player1.player_name}" class="player-image" onclick="checkWinner(${player1["3ptpercent"]}, ${player2["3ptpercent"]}, 1)">
       `;
 
         // Update player2 details
         document.getElementById("player2").innerHTML = `
         <h2>${player2.player_name}</h2>
-        <img src="${player2.image_url}" alt="${player2.player_name}" class="player-image" onclick="checkWinner(${player1.fg_percentage}, ${player2.fg_percentage}, 2)">
+        <img src="${player2.image_url}" alt="${player2.player_name}" class="player-image" onclick="checkWinner(${player1["3ptpercent"]}, ${player2["3ptpercent"]}, 2)">
       `;
 
         // Remove previous result classes
@@ -93,7 +93,7 @@
         document.getElementById("player2").classList.remove("correct", "wrong");
       }
 
-      // Check if the selected player has the higher FG%
+      // Check if the selected player has the higher 3PT%
       function checkWinner(fg1, fg2, selected) {
         const player1Div = document.getElementById("player1");
         const player2Div = document.getElementById("player2");
@@ -102,7 +102,7 @@
           document.getElementById("current-score").textContent = currentScore;
           if (currentScore > highScore) {
             highScore = currentScore;
-            localStorage.setItem("highScoreFG", highScore);
+            localStorage.setItem("highScore3PT", highScore);
             document.getElementById("high-score").textContent = highScore;
           }
           selected === 1
