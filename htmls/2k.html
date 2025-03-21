@@ -79,13 +79,13 @@
         // Update player1 details
         document.getElementById("player1").innerHTML = `
         <h2>${player1.player_name}</h2>
-        <img src="${player1.image_url}" alt="${player1.player_name}" class="player-image" onclick="checkWinner(${player1.rating}, ${player2.rating}, 1)">
+        <img draggable="false" src="${player1.image_url}" alt="${player1.player_name}" class="player-image" onclick="checkWinner(${player1.rating}, ${player2.rating}, 1)">
       `;
 
         // Update player2 details
         document.getElementById("player2").innerHTML = `
         <h2>${player2.player_name}</h2>
-        <img src="${player2.image_url}" alt="${player2.player_name}" class="player-image" onclick="checkWinner(${player1.rating}, ${player2.rating}, 2)">
+        <img draggable="false" src="${player2.image_url}" alt="${player2.player_name}" class="player-image" onclick="checkWinner(${player1.rating}, ${player2.rating}, 2)">
       `;
 
         // Remove previous result classes

@@ -149,15 +149,58 @@ header button:hover {
 /* Animation Effects */
 .correct {
   border: 5px solid #00ff00;
-  transition: border 0.3s ease, transform 0.3s ease;
+  background-color: rgba(0, 255, 0, 0.2);
+  transform: scale(1.1);
+  transition: border 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
 }
 
 .wrong {
   border: 5px solid #ff0000;
-  transition: border 0.3s ease, transform 0.3s ease;
+  background-color: rgba(255, 0, 0, 0.2);
+  transform: scale(0.9);
+  transition: border 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
 }
 
 .correct,
 .wrong {
   transform: scale(1.05);
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  background-color: #2a2a3d;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+form label {
+  font-size: 1.2rem;
+  color: #ffcc00;
+}
+
+form input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+form input:focus {
+  outline: none;
+  box-shadow: 0px 0px 5px #ffcc00;
+}
+
+form button {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.2rem;
 }

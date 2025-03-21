@@ -44,7 +44,7 @@ const login = (req, res) => {
         return res.status(401).json({ error: "Invalid password" });
 
       const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-        expiresIn: "30m", // Token expires in 5 minutes
+        expiresIn: "30m",
       });
 
       res.status(200).json({ auth: true, token });
