@@ -14,8 +14,8 @@ NBA Higher or Lower is a web-based game where users guess which NBA player has h
 ## Project Structure
 - config/ db.js 
 - controllers/ authController.js playerController.js 
-- htmls/ 2k.html 3ptpercentage.html fgpercentage.html index.html login.html register.html start.html 
-- model/ userModel.js
+- htmls/ 2k.html 3ptpercentage.html, fgpercentage.html, index.html, login.html, register.html, start.html 
+- model/ userModel.js, highScoreModel.js, playerModel.js
 - routes/ auth.js players.js 
 - server/ server.js 
 - style/ styles.css
