@@ -23,5 +23,7 @@ NBA Higher or Lower is a web-based game where users guess which NBA player has h
 ## Endpoints
 - POST /auth/register => Registering account
 - POST /auth/login => Logging in account
+- POST /players/highscore => Highscore for logged in user
 - GET /players/ => Getting a player
 - GET /players/random => Getting 2 random players
+- GET /players/highscore/:game_type => Getting highscore for certain games to logged in user
