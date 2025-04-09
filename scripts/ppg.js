@@ -1,0 +1,73 @@
+let currentScore = 0;
+let highScore = 0;
+
+async function fetchHighScore() {
+  const response = await fetch("http://localhost:5000/players/highscore/ppg", {
+    headers: { "x-access-token": localStorage.getItem("token") },
+  });
+  const highScoreData = await response.json();
+  highScore = highScoreData.score || 0;
+  document.getElementById("high-score").textContent = highScore;
+}
+
+async function updateHighScoreOnServer(newHighScore) {
+  await fetch("http://localhost:5000/players/highscore", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-access-token": localStorage.getItem("token"),
+    },
+    body: JSON.stringify({
+      game_type: "ppg",
+      score: newHighScore,
+    }),
+  });
+}
+
+async function fetchPlayers() {
+  const response = await fetch("http://localhost:5000/players/random", {
+    headers: { "x-access-token": localStorage.getItem("token") },
+  });
+  const players = await response.json();
+  const [player1, player2] = players;
+
+  document.getElementById("player1").innerHTML = `
+      <h2>${player1.player_name}</h2>
+      <img draggable="false" src="${player1.image_url}" alt="${player1.player_name}" class="player-image" onclick="checkWinner(${player1.ppg}, ${player2.ppg}, 1)">
+    `;
+
+  document.getElementById("player2").innerHTML = `
+      <h2>${player2.player_name}</h2>
+      <img draggable="false" src="${player2.image_url}" alt="${player2.player_name}" class="player-image" onclick="checkWinner(${player1.ppg}, ${player2.ppg}, 2)">
+    `;
+
+  document.getElementById("player1").classList.remove("correct", "wrong");
+  document.getElementById("player2").classList.remove("correct", "wrong");
+}
+
+async function checkWinner(ppg1, ppg2, selected) {
+  const player1Div = document.getElementById("player1");
+  const player2Div = document.getElementById("player2");
+  if ((selected === 1 && ppg1 > ppg2) || (selected === 2 && ppg2 > ppg1)) {
+    currentScore++;
+    document.getElementById("current-score").textContent = currentScore;
+    if (currentScore > highScore) {
+      highScore = currentScore;
+      document.getElementById("high-score").textContent = highScore;
+      await updateHighScoreOnServer(highScore);
+    }
+    selected === 1
+      ? player1Div.classList.add("correct")
+      : player2Div.classList.add("correct");
+  } else {
+    currentScore = 0;
+    document.getElementById("current-score").textContent = currentScore;
+    selected === 1
+      ? player1Div.classList.add("wrong")
+      : player2Div.classList.add("wrong");
+  }
+  setTimeout(fetchPlayers, 800);
+}
+
+fetchPlayers();
+fetchHighScore();
