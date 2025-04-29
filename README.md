@@ -8,9 +8,9 @@ NBA Higher or Lower is a web-based game where users guess which NBA player has h
   - Compare players' career FG%.
   - Compare players' career 3PT%.
   - Compare players' 2K ratings.
-- **Score Tracking**:
-- **Responsive Design**:
-- **Swagger API documentation**:
+- **Score Tracking**
+- **Responsive Design**
+- **Swagger API documentation**
 
 ## Project Structure
 - config/ db.js, swagger.js 
