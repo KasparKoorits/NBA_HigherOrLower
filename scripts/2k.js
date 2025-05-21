@@ -1,6 +1,9 @@
+// Frontend script for NBA 2K rating game mode
+
 let currentScore = 0;
 let highScore = 0;
 
+// Fetch high score from server
 async function fetchHighScore() {
   const response = await fetch(
     "http://localhost:5000/players/highscore/rating",
@@ -13,6 +16,7 @@ async function fetchHighScore() {
   document.getElementById("high-score").textContent = highScore;
 }
 
+// Update high score on server
 async function updateHighScoreOnServer(newHighScore) {
   await fetch("http://localhost:5000/players/highscore", {
     method: "POST",
@@ -27,6 +31,7 @@ async function updateHighScoreOnServer(newHighScore) {
   });
 }
 
+// Fetch two random players and display them
 async function fetchPlayers() {
   const response = await fetch("http://localhost:5000/players/random", {
     headers: { "x-access-token": localStorage.getItem("token") },
@@ -48,6 +53,7 @@ async function fetchPlayers() {
   document.getElementById("player2").classList.remove("correct", "wrong");
 }
 
+// Check if selected player is the winner and update score
 async function checkWinner(rating1, rating2, selected) {
   const player1Div = document.getElementById("player1");
   const player2Div = document.getElementById("player2");

@@ -1,3 +1,5 @@
+// Sequelize configuration for connecting to MySQL database
+
 const { Sequelize } = require("sequelize");
 
 const sequelize = new Sequelize(

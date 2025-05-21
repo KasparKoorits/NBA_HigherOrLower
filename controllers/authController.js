@@ -1,7 +1,10 @@
+// Handles user registration and login logic
+
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../model/userModel");
 
+// Register a new user
 const register = async (req, res) => {
   const { username, password } = req.body;
 
@@ -23,6 +26,7 @@ const register = async (req, res) => {
   }
 };
 
+// Login a user and return JWT token
 const login = async (req, res) => {
   const { username, password } = req.body;
 

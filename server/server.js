@@ -1,3 +1,5 @@
+// Main server file: sets up Express app, routes, and database sync
+
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -14,7 +16,7 @@ app.use(cors());
 // Swagger documentation route
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-// Routes
+// Routes for authentication and player data
 app.use("/auth", authRoutes);
 app.use("/players", playerRoutes); // Removed verifyToken middleware
 

@@ -1,7 +1,10 @@
+// Handles player data and high score logic
+
 const Player = require("../model/playerModel");
 const HighScore = require("../model/highScoreModel");
 const { Sequelize } = require("sequelize");
 
+// Get all players from database
 const getAllPlayers = async (req, res) => {
   try {
     const players = await Player.findAll();
@@ -11,6 +14,7 @@ const getAllPlayers = async (req, res) => {
   }
 };
 
+// Get two random players
 const getRandomPlayers = async (req, res) => {
   try {
     const players = await Player.findAll({
@@ -23,6 +27,7 @@ const getRandomPlayers = async (req, res) => {
   }
 };
 
+// Get high score for a user and game type
 const getHighScore = async (req, res) => {
   const { game_type } = req.params;
   const userId = req.userId; // Extracted from the JWT token
@@ -38,6 +43,7 @@ const getHighScore = async (req, res) => {
   }
 };
 
+// Update high score for a user and game type
 const updateHighScore = async (req, res) => {
   const { game_type, score } = req.body;
   const userId = req.userId; // Extracted from the JWT token

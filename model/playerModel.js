@@ -1,6 +1,9 @@
+// Player model: stores NBA player data and stats
+
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db");
 
+// Define Player table with name, image, and stats
 const Player = sequelize.define(
   "Player",
   {

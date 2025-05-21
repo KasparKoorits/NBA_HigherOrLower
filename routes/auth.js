@@ -1,3 +1,5 @@
+// Auth routes: registration and login endpoints
+
 const express = require("express");
 const { register, login } = require("../controllers/authController");
 

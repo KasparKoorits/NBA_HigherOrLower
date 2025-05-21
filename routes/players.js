@@ -1,3 +1,5 @@
+// Player routes: endpoints for player data and high scores
+
 const express = require("express");
 const {
   getAllPlayers,
