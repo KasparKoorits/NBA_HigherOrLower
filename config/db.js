@@ -13,9 +13,11 @@ const sequelize = new Sequelize(
   }
 );
 
-sequelize
-  .authenticate()
-  .then(() => console.log("Connected to MySQL database"))
-  .catch((err) => console.error("Unable to connect to the database:", err));
+if (process.env.NODE_ENV !== "test") {
+  sequelize
+    .authenticate()
+    .then(() => console.log("Connected to MySQL database"))
+    .catch((err) => console.error("Unable to connect to the database:", err));
+}
 
 module.exports = sequelize;
