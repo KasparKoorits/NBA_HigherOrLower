@@ -1,5 +1,5 @@
 # NBA Higher or Lower
-NBA Higher or Lower is a web-based game where users guess which NBA player has higher stats in categories like career points per game (PPG), field goal percentage (FG%), three-point percentage (3PT%), or 2K ratings. Made by Kaspar Koorits and Jakob Kaur Kelder.
+NBA Higher or Lower is a web-based game where users guess which NBA player has higher stats in categories like career points per game (PPG), field goal percentage (FG%), three-point percentage (3PT%), or 2K ratings. Made by Kaspar Koorits and Jakob Kaur Kelder using Live Share (VS Code plugin).
 
 ## Features
 - **User Authentication**
